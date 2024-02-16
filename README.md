@@ -1,0 +1,1 @@
+# renovate-ibm-jdk-manager
