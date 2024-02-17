@@ -15,7 +15,7 @@
   customManagers: [
     {
       customType: "regex",
-      fileMatch: ["Dockerfile"],
+      fileMatch: ["^Dockerfile$"],
       datasourceTemplate: "custom.ibmjdk8",
       depNameTemplate: "ibm-java-sdk",
       "matchStrings": [
