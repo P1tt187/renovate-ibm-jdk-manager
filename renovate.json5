@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  customDatasources: {
+    ibmjdk8 : {
+      defaultRegistryUrlTemplate : "https://public.dhe.ibm.com/ibmdl/export/pub/systems/cloud/runtimes/java/meta/8.0/sdk/linux/x86_64/index.yml",
+      format: "yaml",
+      transformTemplates: [
+        "{  \"releases\":  $map($keys($), function($v, $i, $a) { {\"version\": $v} }) }"
+      ]
+    }
+  },
+  customManagers: [
+    {
+      customType: "regex",
+      fileMatch: ["Dockerfile"],
+      datasourceTemplate: "custom.ibmjdk8",
+      "matchStrings": [
+        "#\\s*renovate:\\s*(datasource=(?<datasource>.*?)\\s*)?depName=(?<depName>.*?)(\\s*versioning=(?<versioning>.*?))?\\s*\\w*:\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ]
+}
