@@ -17,6 +17,7 @@
       customType: "regex",
       fileMatch: ["Dockerfile"],
       datasourceTemplate: "custom.ibmjdk8",
+      depNameTemplate: "ibm-java-sdk",
       "matchStrings": [
         "#\\s*renovate:\\s*(datasource=(?<datasource>.*?)\\s*)?depName=(?<depName>.*?)(\\s*versioning=(?<versioning>.*?))?\\s*\\w*:\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
       ],
